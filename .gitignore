@@ -51,3 +51,6 @@ build-iPhoneSimulator/
 
 # Mac OS X
 .DS_Store
+
+# Eclipse
+.project
