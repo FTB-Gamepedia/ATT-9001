@@ -54,3 +54,6 @@ build-iPhoneSimulator/
 
 # Eclipse
 .project
+
+# Secret stuff
+config.yml
