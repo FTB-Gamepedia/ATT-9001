@@ -20,7 +20,7 @@ params = {
   tslimit: "max"
 }
 
-while true
+loop do
   params["continue"] = continue
   
   res = CLIENT.post(params)
@@ -29,17 +29,15 @@ while true
     tilesheet[entry["name"]] = entry["id"]
     puts "#{entry["name"]}; #{entry["id"]}"
   end
-  
-  if res["continue"].nil?
-    break
-  else
-    continue = res["continue"]["continue"]
-    puts "#{continue}; #{res["continue"]["tsfrom"]}"
-    params["tsfrom"] = res["continue"]["tsfrom"]
-  end
+
+  break unless res["continue"]
+
+  continue = res["continue"]["continue"]
+  puts "#{continue}; #{res["continue"]["tsfrom"]}"
+  params["tsfrom"] = res["continue"]["tsfrom"]
 end
 
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
-  code = $languages[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")]
+  code = LANGUAGES[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")]
   puts code
 end
