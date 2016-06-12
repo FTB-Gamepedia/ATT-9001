@@ -42,13 +42,19 @@ File.open("resources/#{MOD}/en_US.lang", "r").each do |line|
   prop = line.sub(/=(.+)/, "")
   local = line.sub(/(.+)=/, "")
   
+  puts "#{prop}; #{local}"
+  
   base[prop] = local if !tilesheet[local].nil?
 end
 
+puts "########"
+
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
+  puts file
   break if file == "resources/#{MOD}/en_US.lang"
   LANGUAGES[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")].each do |code|
-    lang_tilesheet = {} # XX name => id (existing tilesheet)
+    puts code
+    lang_tilesheet = {} # XX name => id (based existing translated tilesheet)
     params = {
       action: "query",
       list: "tiletranslations",
@@ -56,23 +62,33 @@ Dir.glob("resources/#{MOD}/*.lang").each do |file|
     }
     
     tilesheet.each do |en_entry, id|
+      puts "#{en_entry}; #{id}"
       params["tsid"] = id
       
       res = CLIENT.post(params)
       res["query"]["tiles"].each do |entry|
         lang_tilesheet[entry["display_name"]] = entry["entry_id"]
+        puts "#{entry["display_name"]}; #{entry["entry_id"]}"
       end
-      
-      lang_tilesheet
     end
     
-    file.each do |line|
+    File.open(file, "r").each do |line|
       prop = line.sub(/=(.+)/, "")
       local = line.sub(/(.+)=/, "")
       
-      if base[prop] != local
-        
+      puts "#{prop}; #{local}"
+      
+      if base[prop] != local #&& lang_tilesheet[local].nil? issue here && !tilesheet[base[prop]].nil?
+        params = {
+          action: "translatetile",
+          tsid: tilesheet[base[prop]],
+          tslang: code,
+          tsname: local
+        }
+        # CLIENT.post(params)
+        puts "#{tilesheet[base[prop]]}; #{base[prop]} (#{prop}) => #{local} (#{code})"
       end
+    break #debug
     end
   end
 end
