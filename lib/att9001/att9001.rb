@@ -28,13 +28,6 @@ loop do
   res["query"]["tiles"].each do |entry|
     tilesheet[entry["name"]] = entry["id"]
   end
-  
-  if res["continue"].nil?
-    break
-  else
-    continue = res["continue"]["continue"]
-    params["tsfrom"] = res["continue"]["tsfrom"]
-  end
 
   break unless res["continue"]
 
