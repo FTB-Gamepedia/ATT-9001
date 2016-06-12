@@ -3,7 +3,7 @@
 # "mc-language" [as in the file name] => ["lang"]
 # or
 # "mc-language" => ["lang1", "lang2"]
-$languages = { # Global var, trololololololo
+LANGUAGES = {
   "af_ZA" => ["af"],
   "ar_SA" => ["ar"],
   "ast_ES" => ["ast"],

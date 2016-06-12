@@ -35,6 +35,11 @@ loop do
     continue = res["continue"]["continue"]
     params["tsfrom"] = res["continue"]["tsfrom"]
   end
+
+  break unless res["continue"]
+
+  continue = res["continue"]["continue"]
+  params["tsfrom"] = res["continue"]["tsfrom"]
 end
 
 # Is always based on en_US. Maybe that should be fixed.
@@ -49,7 +54,7 @@ end
 
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
   break if file == "resources/#{MOD}/en_US.lang"
-  $languages[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")].each do |code|
+  LANGUAGES[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")].each do |code|
     lang_tilesheet = {} # XX name => id (existing tilesheet)
     params = {
       action: "query",
