@@ -10,7 +10,7 @@ CLIENT = MediaWiki::Butt.new(CONFIG["wiki"])
 CLIENT.login(CONFIG["username"], CONFIG["password"])
 
 MOD = CONFIG["mod"]
-tilesheet = {} # name => id
+tilesheet = {} # EN name => id
 continue = ""
 
 params = {
@@ -20,26 +20,61 @@ params = {
   tslimit: "max"
 }
 
-while true
+loop do
   params["continue"] = continue
   
   res = CLIENT.post(params)
   
   res["query"]["tiles"].each do |entry|
     tilesheet[entry["name"]] = entry["id"]
-    puts "#{entry["name"]}; #{entry["id"]}"
   end
   
   if res["continue"].nil?
     break
   else
     continue = res["continue"]["continue"]
-    puts "#{continue}; #{res["continue"]["tsfrom"]}"
     params["tsfrom"] = res["continue"]["tsfrom"]
   end
 end
 
+# Is always based on en_US. Maybe that should be fixed.
+base = {}
+
+File.open("resources/#{MOD}/en_US.lang", "r").each do |line|
+  prop = line.sub(/=(.+)/, "")
+  local = line.sub(/(.+)=/, "")
+  
+  base[prop] = local if !tilesheet[local].nil?
+end
+
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
-  code = $languages[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")]
-  puts code
+  break if file == "resources/#{MOD}/en_US.lang"
+  $languages[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")].each do |code|
+    lang_tilesheet = {} # XX name => id (existing tilesheet)
+    params = {
+      action: "query",
+      list: "tiletranslations",
+      tslang: code
+    }
+    
+    tilesheet.each do |en_entry, id|
+      params["tsid"] = id
+      
+      res = CLIENT.post(params)
+      res["query"]["tiles"].each do |entry|
+        lang_tilesheet[entry["display_name"]] = entry["entry_id"]
+      end
+      
+      lang_tilesheet
+    end
+    
+    file.each do |line|
+      prop = line.sub(/=(.+)/, "")
+      local = line.sub(/(.+)=/, "")
+      
+      if base[prop] != local
+        
+      end
+    end
+  end
 end
