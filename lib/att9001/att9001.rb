@@ -45,6 +45,8 @@ File.open("resources/#{MOD}/en_US.lang", "r").each do |line|
   base[prop] = local if !tilesheet[local].nil?
 end
 
+TOKEN = CLIENT.post({action: "query", meta: "tokens"})["query"]["tokens"]["csrftoken"] #TODO: maybe fix MW butt
+
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
   next if file == "resources/#{MOD}/en_US.lang"
   LANGUAGES[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")].each do |code|
@@ -71,7 +73,7 @@ Dir.glob("resources/#{MOD}/*.lang").each do |file|
       if base[prop] != local && lang_tilesheet[local].nil? && !tilesheet[base[prop]].nil?
         params = {
           action: "translatetile",
-          tstoken: CLIENT.get_token("csrf"), #Issue is here- returns nil.
+          tstoken: TOKEN,
           tsid: tilesheet[base[prop]],
           tslang: code,
           tsname: local
