@@ -71,6 +71,7 @@ Dir.glob("resources/#{MOD}/*.lang").each do |file|
       if base[prop] != local && lang_tilesheet[local].nil? && !tilesheet[base[prop]].nil?
         params = {
           action: "translatetile",
+          tstoken: CLIENT.get_token("csrf"), #Issue is here- returns nil.
           tsid: tilesheet[base[prop]],
           tslang: code,
           tsname: local
