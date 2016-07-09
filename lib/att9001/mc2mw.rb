@@ -20,6 +20,7 @@ LANGUAGES = {
   "en_AU" => [],
   "en_CA" => ["en-ca"],
   "en_GB" => ["en-gb"],
+  "en_IC" => [],
   "en_NZ" => [],
   "en_UD" => [],
   "en_PT" => [],
