@@ -50,7 +50,7 @@ TOKEN = CLIENT.post({action: "query", meta: "tokens"})["query"]["tokens"]["csrft
 
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
   next if file == "resources/#{MOD}/en_US.lang"
-  LANGUAGES[file.sub(/resources\/#{MOD}\//, "").sub(/\.lang/, "")].each do |code|
+  LANGUAGES[file.sub(/resources\/#{MOD}\/([\w_]+)\.lang/, '\1')].each do |code|
     lang_tilesheet = {} # XX name => id (based existing translated tilesheet)
     params = {
       action: "query",
