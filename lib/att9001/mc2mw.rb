@@ -69,6 +69,7 @@ LANGUAGES = {
   "mk_MK" => ["mk"],
   "ms_MY" => ["ms"],
   "mt_MT" => ["mt"],
+  "nb_NO" => ["nb"], #Legacy support
   "nds_DE" => ["nds"],
   "nl_NL" => ["nl"],
   "nn_NO" => ["nn"],
