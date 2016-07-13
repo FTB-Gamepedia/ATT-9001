@@ -6,10 +6,10 @@
 Simple steps-
 
 1. Make sure you have Ruby.
-2. Make sure you have everything in the Gemfile.
+2. Make sure you have everything in the Gemfile (`bundle install`).
 3. Copy example_config.yml to config.yml. Fill in the details.
 4. Copy the language files of your mod to `/resources/<the mod's FTB Wiki abbreviation>/`. Make sure they are named correctly.
-5. Change the directory to this directory and `ruby run.rb`.
+5. Change the directory to this directory and `ruby run.rb` (if there are errors caused by missing gems, try doing `bundle exec ruby run.rb`).
 6. Profit. Make sure to not import the tiles through your regular account, but a bot account. If you don't, the FTB Wiki Staff might get angry.
 
 Also- the console will show what tiles are being translated. Example output-
