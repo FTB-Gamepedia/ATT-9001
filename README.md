@@ -8,7 +8,7 @@ Simple steps-
 1. Make sure you have Ruby.
 2. Make sure you have everything in the Gemfile.
 3. Copy example_config.yml to config.yml. Fill in the details.
-4. Copy the language files of your mod to /resources/<the mod's FTB Wiki abbreviation>/. Make sure they are named correctly.
+4. Copy the language files of your mod to `/resources/<the mod's FTB Wiki abbreviation>/`. Make sure they are named correctly.
 5. Change the directory to this directory and `ruby run.rb`.
 6. Profit. Make sure to not import the tiles through your regular account, but a bot account. If you don't, the FTB Wiki Staff might get angry.
 
