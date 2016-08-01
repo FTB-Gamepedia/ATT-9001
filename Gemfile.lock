@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    httpclient (2.8.0)
+    mediawiki-butt (1.0.0)
+      httpclient (~> 2.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mediawiki-butt (~> 1.0.0)
+
+RUBY VERSION
+   ruby 2.3.0p0
+
+BUNDLED WITH
+   1.12.5
