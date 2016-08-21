@@ -9,7 +9,7 @@ CLIENT = MediaWiki::Butt.new(CONFIG["wiki"])
 
 CLIENT.login(CONFIG["username"], CONFIG["password"])
 
-MOD = CONFIG["mod"]
+MOD = ARGV[0]
 tilesheet = {} # EN name => id
 continue = ""
 
