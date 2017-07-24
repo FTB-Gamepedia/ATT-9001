@@ -11,7 +11,7 @@ Simple steps-
 4. Copy example_config.yml to config.yml. Fill in the details.
 5. Copy the language files of your mod to `/resources/<the mod's FTB Wiki abbreviation>/`. Make sure they are named correctly.
 6. Run with `ruby run.rb <the mod's FTB Wiki abbreviation>` (if there are errors caused by missing gems, try doing `bundle exec ruby run.rb`).
-7. Profit. Make sure to not import the tiles through your regular account, but through a bot account. If you don't, the FTB Wiki Staff might get angry.
+7. Profit. Make sure to not import the tiles through your regular account, but through a bot account. If you don't, FTB Wiki editors might get angry since it spams the recent changes.
 
 Also- the console will output what tiles are being translated as they are translated. Example output-
 ```
