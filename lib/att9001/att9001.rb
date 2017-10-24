@@ -50,7 +50,17 @@ TOKEN = CLIENT.post({action: "query", meta: "tokens"})["query"]["tokens"]["csrft
 
 Dir.glob("resources/#{MOD}/*.lang").each do |file|
   next if file == "resources/#{MOD}/en_US.lang" || file == "resources/#{MOD}/en_us.lang"
-  LANGUAGES[file.sub(/resources\/#{MOD}\/([\w_]+)\.lang/, '\1').downcase].each do |code|
+
+  mc_code = file.sub(/resources\/#{MOD}\/([\w_]+)\.lang/, '\1').downcase
+  langs = LANGUAGES[mc_code]
+
+  if langs.nil?
+      puts "ATT-9001 does not support the language with the code \"#{mc_code}.\""
+      puts "Please remove that language file or update mc2mw.rb (or report the issue on GitHub)."
+      exit
+  end
+
+  langs.each do |code|
     lang_tilesheet = {} # XX name => id (based existing translated tilesheet)
     params = {
       action: "query",
