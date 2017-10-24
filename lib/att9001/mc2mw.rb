@@ -4,7 +4,7 @@
 # or
 # "mc-language" => ["lang1", "lang2"]
 #
-# This is updated as of Minecraft 1.10. (TODO: update to 1.11/1.12)
+# This is updated as of Minecraft 1.12.
 LANGUAGES = {
   "af_za" => ["af"],
   "ar_sa" => ["ar"],
