@@ -7,7 +7,7 @@ CONFIG = YAML.load_file("config.yml")
 
 CLIENT = MediaWiki::Butt.new(CONFIG["wiki"])
 
-CLIENT.login(CONFIG["username"], CONFIG["password"])
+CLIENT.login(CONFIG["login"], CONFIG["token"])
 
 MOD = ARGV[0]
 tilesheet = {} # EN name => id
