@@ -52,11 +52,12 @@ build-iPhoneSimulator/
 # Mac OS X
 .DS_Store
 
-# Eclipse
+# IDE
 .project
+.idea/*
 
 # Secret stuff
 config.yml
 
 # Resources
-/resources/
+resources/*
