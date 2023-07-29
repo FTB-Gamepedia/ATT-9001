@@ -41,6 +41,7 @@ LANGUAGES = {
   "es_ec" => [],
   "es_es" => ["es"],
   "es_mx" => [],
+  "es_sp" => ["es"],
   "es_uy" => ["es-ni"], # Note: es-ni is FTB Wiki-specific
   "es_ve" => [],
   "esan" => [],
