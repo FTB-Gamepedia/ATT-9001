@@ -20,3 +20,13 @@ The console will output what tiles are being translated as they are translated. 
 ```
 
 If nothing needs an update, nothing will be updated, and the output will be rather lame.
+
+### Command options
+Some mods (very specifically, MineFactory Reloaded) format their property files very strangely, with extra spaces, like this:
+```
+tile.mfr.machine.planter.name = Planter
+tile.mfr.machine.fisher.name = Fisher
+tile.mfr.machine.harvester.name = Harvester
+```
+
+You add the --remove-spaces while running the command to fix this. (Actually, you just need a 2nd argument of any kind because I'm being hacky.)

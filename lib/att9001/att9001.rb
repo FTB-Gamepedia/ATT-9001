@@ -11,6 +11,14 @@ CLIENT = MediaWiki::Butt.new(CONFIG['wiki'])
 CLIENT.login(CONFIG['login'], CONFIG['token'])
 
 MOD = ARGV[0]
+
+REMOVE_SPACES = ARGV.length > 1 # TODO: be less hacky
+
+# TODO: better names
+PROP_REGEX = !REMOVE_SPACES ? /(.+)=(.+)\n/ : /(.+) = (.+)\n/
+RIGHT_PROP_REGEX = !REMOVE_SPACES ? /=(.+)\n/ : / = (.+)\n/
+LEFT_PROP_REGEX = !REMOVE_SPACES ? /(.+)=/ : /(.+) = /
+
 tilesheet = {} # EN name => id
 continue = ''
 
@@ -45,9 +53,9 @@ dot_lang_file_location = "resources/#{MOD}/en_us.lang" if !File.file?(dot_lang_f
 
 if File.file?(dot_lang_file_location)
   File.open(dot_lang_file_location, 'r').each do |line|
-    next if line.match(/(.+)=(.+)\n/).nil?
-    prop = line.sub(/=(.+)\n/, '')
-    localization = line.sub(/(.+)=/, '').sub(/\r/, '').sub(/\n/, '')
+    next if line.match(PROP_REGEX).nil?
+    prop = line.sub(RIGHT_PROP_REGEX, '')
+    localization = line.sub(LEFT_PROP_REGEX, '').sub(/\r/, '').sub(/\n/, '')
 
     base[prop] = localization unless tilesheet[localization].nil?
   end
@@ -92,9 +100,9 @@ Dir.glob("resources/#{MOD}/*.lang").each do |file|
     end
 
     File.open(file, 'r').each do |line|
-      next if line.match(/(.+)=(.+)\n/).nil?
-      prop = line.sub(/=(.+)\n/, '')
-      localization = line.sub(/(.+)=/, '').sub(/\r/, '').sub(/\n/, '')
+      next if line.match(PROP_REGEX).nil?
+      prop = line.sub(RIGHT_PROP_REGEX, '')
+      localization = line.sub(LEFT_PROP_REGEX, '').sub(/\r/, '').sub(/\n/, '')
 
       if base[prop] != localization && lang_tilesheet[localization].nil? && !tilesheet[base[prop]].nil?
         params = {
