@@ -4,7 +4,9 @@
 # or
 # "mc-language" => ["lang1", "lang2"]
 #
-# This is updated as of Minecraft 1.16.2.
+# This is updated as of Minecraft 1.19.3.
+# 
+# Check https://minecraft.fandom.com/wiki/Language and https://gerrit.wikimedia.org/g/mediawiki/core/%2B/HEAD/includes/languages/data/Names.php occasionally for updates
 LANGUAGES = {
   "af_za" => ["af"],
   "ar_sa" => ["ar"],
@@ -54,6 +56,7 @@ LANGUAGES = {
   "fr_ca" => [],
   "fr_fr" => ["fr"],
   "fra_de" => ["vmf"],
+  "fur_it" => ["fur"],
   "fy_nl" => ["fy"],
   "ga_ie" => ["ga"],
   "gd_gb" => ["gd"],
@@ -86,6 +89,7 @@ LANGUAGES = {
   "la_va" => ["la"],
   "lb_lu" => ["lb"],
   "li_li" => ["li"],
+  "lmo" => ["lmo"],
   "lol_us" => [],
   "lt_lt" => ["lt"],
   "lv_lv" => ["lv"],
@@ -95,6 +99,7 @@ LANGUAGES = {
   "moh_ca" => ["moh"],
   "ms_my" => ["ms"],
   "mt_mt" => ["mt"],
+  "nah" => ["nah"],
   "nb_no" => ["nb"], #Legacy support
   "nds_de" => ["nds"],
   "nl_be" => [],
@@ -110,7 +115,9 @@ LANGUAGES = {
   "pt_pt" => ["pt"],
   "qya_aa" => [],
   "ro_ro" => ["ro"],
+  "rpr" => [],
   "ru_ru" => ["ru"],
+  "ry_ua" => ["rue"],
   "scn" => ["scn"],
   "se_no" => ["se"],
   "sk_sk" => ["sk"],
@@ -127,6 +134,7 @@ LANGUAGES = {
   "th_th" => ["th"],
   "tl_ph" => ["tl"],
   "tlh_aa" => [],
+  "tok" => ["tok"],
   "tr_tr" => ["tr"],
   "tt_ru" => ["tt"],
   "tzl_tzl" => [],
@@ -138,5 +146,6 @@ LANGUAGES = {
   "yi_de" => ["yi"],
   "yo_ng" => ["yo"],
   "zh_cn" => ["zh-cn"],
+  "zh_hk" => ["zh-hk"],
   "zh_tw" => ["zh-tw"]
 }
