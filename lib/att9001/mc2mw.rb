@@ -71,6 +71,7 @@ LANGUAGES = {
   "hy_am" => ["hy"],
   "id_id" => ["id"],
   "ig_ng" => ["ig"],
+  "io_en" => ["io"],
   "io_ido" => ["io"],
   "is_is" => ["is"],
   "isv" => [],
