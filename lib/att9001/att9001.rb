@@ -50,6 +50,8 @@ base = {} # prop => en local
 dot_lang_file_location = "resources/#{MOD}/en_US.lang"
 # Checking for the rare uncapitalized file name, which was used in maybe two Minecraft versions
 dot_lang_file_location = "resources/#{MOD}/en_us.lang" if !File.file?(dot_lang_file_location)
+# Checking for "properties" file name, which is used in some old versions (but is the same format)
+dot_lang_file_location = "resources/#{MOD}/en_US.properties" if !File.file?(dot_lang_file_location)
 
 if File.file?(dot_lang_file_location)
   File.open(dot_lang_file_location, 'r').each do |line|
@@ -70,10 +72,10 @@ TOKEN = CLIENT.post({action: 'query', meta: 'tokens'})['query']['tokens']['csrft
 #################################################
 # *.lang files
 ##################################################
-Dir.glob("resources/#{MOD}/*.lang").each do |file|
-  next if file == "resources/#{MOD}/en_US.lang" || file == "resources/#{MOD}/en_us.lang"
+Dir.glob("resources/#{MOD}/*.{lang,properties}").each do |file|
+  next if file == "resources/#{MOD}/en_US.lang" || file == "resources/#{MOD}/en_us.lang" || file == "resources/#{MOD}/en_US.properties"
 
-  mc_code = file.sub(/resources\/#{MOD}\/([\w_]+)\.lang/, '\1').downcase
+  mc_code = file.sub(/resources\/#{MOD}\/([\w_]+)\.(lang|properties)/, '\1').downcase
   langs = LANGUAGES[mc_code]
 
   if langs.nil?
@@ -83,6 +85,7 @@ Dir.glob("resources/#{MOD}/*.lang").each do |file|
   end
 
   langs.each do |code|
+    puts "Translating Minecraft language #{mc_code} to MediaWiki language #{code}"
     lang_tilesheet = {} # XX name => id (based existing translated tilesheet)
     params = {
       action: 'query',
@@ -136,6 +139,7 @@ Dir.glob("resources/#{MOD}/*.json").each do |file|
   end
 
   langs.each do |code|
+    puts "Translating Minecraft language #{mc_code} to MediaWiki language #{code}"
     lang_tilesheet = {} # XX name => id (based existing translated tilesheet)
     params = {
         action: 'query',
